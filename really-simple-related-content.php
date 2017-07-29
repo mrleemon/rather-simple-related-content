@@ -49,7 +49,7 @@ class Really_Simple_Related_Content {
 
         add_action( 'init', array( $this, 'load_language' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-		add_action( 'get_related_posts', array( $this, 'get_related_posts' ) );
+		add_action( 'get_related_content', array( $this, 'get_related_content' ) );
 	}
 
 	
@@ -88,7 +88,7 @@ class Really_Simple_Related_Content {
 	 * enqueue_scripts
 	 */
 	function enqueue_scripts() {
-		wp_enqueue_style( 'really-simple-manual-related-posts-css', plugins_url( '/style.css', __FILE__) );
+		wp_enqueue_style( 'really-simple-related-content-css', plugins_url( '/style.css', __FILE__) );
 	}
 
 
@@ -105,18 +105,17 @@ class Really_Simple_Related_Content {
 
 	
 	/*
-	* get_related_posts
+	* get_related_content
 	*/
 
-	function get_related_posts( $post_id ) {
+	function get_related_content( $post_id ) {
 		$settings = (array) get_option( 'rsrc_settings' );
-		$header = isset( $settings['header'] ) ? $settings['header'] : __( 'Related Posts', 'really-simple-related-content' );
+		$header = isset( $settings['header'] ) ? $settings['header'] : __( 'Related Content', 'really-simple-related-content' );
 		$layout = isset( $settings['layout'] ) ? $settings['layout'] : 'thumbnails';
 		$thumbnail_size = isset( $settings['thumbnail_size'] ) ? $settings['thumbnail_size'] : 'thumbnail';
-		echo $thumbnail_size;
 		$ids = wp_parse_id_list( $this->get_related_posts_ids( $post_id ) );
 		if ( ! empty( $ids ) ) {
-			$html = '<div class="related-posts"><h3>' . $header . '</h3><ul class="layout-' . $layout . '">';
+			$html = '<div class="related-content"><h3>' . $header . '</h3><ul class="layout-' . $layout . '">';
 			foreach( $ids as $id ) {
 				if ( $layout == 'list' ) {
 					$html .= '<li><a href="' . esc_url( apply_filters( 'the_permalink', get_permalink( $id ) ) ) . '">' . get_the_title( $id ) . '</a></li>';	

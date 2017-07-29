@@ -1,6 +1,6 @@
-=== Really Simple Related Posts ===
+=== Really Simple Related Content ===
 Contributors: Oscar Ciutat
-Tags: related, posts, custom, types, manual
+Tags: related, posts, content, custom, types, manual
 Requires at least: 4.0
 Tested up to: 4.7.3
 Stable tag: 1.0

@@ -21,6 +21,6 @@
 .related-content ul.layout-thumbnails li {
 	display: inline-block;
 	/*max-width: 150px;*/
-	margin-right: 1px;
+	margin: 0 2px 2px 0;
 	vertical-align: top;
 }

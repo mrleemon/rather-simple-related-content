@@ -115,10 +115,12 @@ class Really_Simple_Related_Content {
 		$thumbnail_size = isset( $settings['thumbnail_size'] ) ? $settings['thumbnail_size'] : 'thumbnail';
 		$ids = wp_parse_id_list( $this->get_related_posts_ids( $post_id ) );
 		if ( ! empty( $ids ) ) {
-			$html = '<div class="related-content"><h3>' . $header . '</h3><ul class="layout-' . $layout . '">';
+			$html = '<div class="related-content">
+					 <h2>' . $header . '</h2>
+					 <ul class="layout-' . $layout . '">';
 			foreach( $ids as $id ) {
 				if ( $layout == 'list' ) {
-					$html .= '<li><a href="' . esc_url( apply_filters( 'the_permalink', get_permalink( $id ) ) ) . '">' . get_the_title( $id ) . '</a></li>';	
+					$html .= '<li><h3 class="entry-title"><a href="' . esc_url( apply_filters( 'the_permalink', get_permalink( $id ) ) ) . '">' . get_the_title( $id ) . '</a></h3></li>';
 				} else {
 					$html .= '<li>' . $this->get_post_thumbnail( $id, $thumbnail_size ) . '</li>';
 				}

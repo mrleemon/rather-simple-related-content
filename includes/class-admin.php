@@ -75,7 +75,7 @@ final class Really_Simple_Related_Content_Admin {
 		wp_enqueue_style( 'really-simple-related-content-css', plugins_url( '/css/admin.css', dirname( __FILE__ ) ) );
 		if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
 			wp_enqueue_script( 'really-simple-related-content', plugins_url( '/js/backend.js', dirname( __FILE__ ) ), array( 'jquery' ), false, true );
-			wp_localize_script( 'really-simple-related-content', 'bawmrp_js', array( 'ID' => $post->ID ) );
+			wp_localize_script( 'really-simple-related-content', 'rsrc_js', array( 'ID' => $post->ID ) );
 		}
 	}
 
@@ -151,16 +151,13 @@ final class Really_Simple_Related_Content_Admin {
 		$thumbnail_size = isset( $settings['thumbnail_size'] ) ? $settings['thumbnail_size'] : 'thumbnail';
 		$thumbnail_size_options = get_intermediate_image_sizes();
 	?>
-		<ul>
+		<select name="rsrc_settings[thumbnail_size]">
 		<?php foreach( $thumbnail_size_options as $option ) { ?>
-			<li>
-			<label for="thumbnail-size-<?php echo $option; ?>">
-			<input type="radio" name="rsrc_settings[thumbnail_size]" id="thumbnail-size-<?php echo $option; ?>" value="<?php echo $option; ?>" <?php checked( $thumbnail_size, $option ); ?> />
+			<option id="thumbnail-size-<?php echo $option; ?>" value="<?php echo $option; ?>" <?php selected( $thumbnail_size, $option ); ?> />
 			<?php echo $option; ?>
-			</label>
-			</li>
+			</option>
 		<?php } ?>
-		</ul>
+		</select>
 	<?php
 	}
 
@@ -251,7 +248,7 @@ final class Really_Simple_Related_Content_Admin {
 						<?php
 						$post_types = get_post_types( array( 'public' => true, 'show_ui' => true ), 'objects' );
 						foreach ( $post_types as $post_type ) {
-							if ( 'attachment' == $post_type->name || !in_array( $post_type->name, $settings['post_types'] ) ) {
+							if ( 'attachment' == $post_type->name ) {
 								continue;
 							}
 							?>
@@ -299,23 +296,23 @@ final class Really_Simple_Related_Content_Admin {
 		$ids = is_array( $ids ) ? '' : $ids;
 	?>
 	<div>
-		<input class="hide-if-js" type="text" name="bawmrp_post_ids" id="bawmrp_post_ids" value="<?php echo esc_attr( $ids ); ?>" />
+		<input class="hide-if-js" type="text" name="rsrc_post_ids" id="rsrc_post_ids" value="<?php echo esc_attr( $ids ); ?>" />
 		<?php wp_nonce_field( basename( __FILE__ ), 'metabox_nonce' ); ?>
 		<ul class="related-posts">
 			<?php
 			if ( ! empty( $ids ) ) {
 				$ids = wp_parse_id_list( $ids );
 				foreach( $ids as $id ) { ?>
-					<li data-id="<?php echo (int)$id; ?>"><span><a class="hide-if-no-js erase_yyarpp"><span class="dashicons dashicons-dismiss"></span></a>&nbsp;&nbsp;<?php echo get_the_title( (int) $id ); ?></span></li>
+					<li data-id="<?php echo (int)$id; ?>"><span><a class="hide-if-no-js delete_related_post"><span class="dashicons dashicons-dismiss"></span></a>&nbsp;&nbsp;<?php echo get_the_title( (int) $id ); ?></span></li>
 				<?php
 				}
 			}
 			?>
 		</ul>
 		<div>
-			<a href="javascript:void(0);" id="bawmrp_open_find_posts_button" class="button hide-if-no-js"><?php _e( 'Add related content', 'really-simple-related-content' ); ?></a>
+			<a href="javascript:void(0);" id="rsrc_open_find_posts_button" class="button hide-if-no-js"><?php _e( 'Add related content', 'really-simple-related-content' ); ?></a>
 			<span class="hide-if-js"><?php _e( 'Add posts IDs from posts you want to relate, comma separated.', 'really-simple-related-content' ); ?></span>
-			<span class="clear-link"><a href="javascript:void(0);" id="bawmrp_delete_related_posts" class="delete hide-if-no-js"><?php _e( 'Clear List' ); ?></a></span>
+			<span class="clear-link"><a href="javascript:void(0);" id="rsrc_delete_related_posts" class="delete hide-if-no-js"><?php _e( 'Clear List' ); ?></a></span>
 		</div>
 	</div>
 	<?php
@@ -348,8 +345,8 @@ final class Really_Simple_Related_Content_Admin {
 			}
 		}
 
-		if ( isset( $_POST['bawmrp_post_ids'] ) ) {
-			$ids = implode( ',', array_filter( wp_parse_id_list( $_POST['bawmrp_post_ids'] ) ) );
+		if ( isset( $_POST['rsrc_post_ids'] ) ) {
+			$ids = implode( ',', array_filter( wp_parse_id_list( $_POST['rsrc_post_ids'] ) ) );
 			update_post_meta( $post_id, '_rsrc_posts_ids', $ids );
 		}
 		

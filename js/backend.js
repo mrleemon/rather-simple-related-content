@@ -1,14 +1,14 @@
-var bawmrpFindPosts;
+var rsrcFindPosts;
 
-(function( $ ){
+(function( $ ) {
 
-	bawmrpFindPosts = {
+	rsrcFindPosts = {
 		open: function( af_name, af_val ) {
 			var overlay = $( '.ui-find-overlay' );
 
 			if ( overlay.length === 0 ) {
 				$( 'body' ).append( '<div class="ui-find-overlay"></div>' );
-				bawmrpFindPosts.overlay();
+				rsrcFindPosts.overlay();
 			}
 
 			overlay.show();
@@ -19,40 +19,40 @@ var bawmrpFindPosts;
 
 			$( '#find-posts' ).show();
 
-			$( '#find-posts-input' ).focus().on( 'keyup', function( e ){
+			$( '#find-posts-input' ).focus().on( 'keyup', function( e ) {
 				if ( e.which == 27 ) {
-					bawmrpFindPosts.close();
+					rsrcFindPosts.close();
 				} // close on Escape
 			});
 
 			// Pull some results up by default
-			bawmrpFindPosts.send();
+			rsrcFindPosts.send();
 
 			return false;
 		},
 
 		close : function() {
-			$('#find-posts-response').html('');
-			$('#find-posts').hide();
-			$('.ui-find-overlay').hide();
-			// $('#find-posts').draggable('destroy').hide();
+			$( '#find-posts-response' ).html( '' );
+			$( '#find-posts' ).hide();
+			$( '.ui-find-overlay' ).hide();
+			// $( '#find-posts' ).draggable( 'destroy' ).hide();
 		},
 
 		overlay: function() {
 			$( '.ui-find-overlay' ).on( 'click', function () {
-				bawmrpFindPosts.close();
+				rsrcFindPosts.close();
 			});
 		},
 
 		send: function() {
 			var $pt = '';
-			$('input[name="find-posts-what[]"]:checked').each(function(){
+			$( 'input[name="find-posts-what[]"]:checked' ).each(function() {
 				$pt += $( this ).val() + ',';
 			});
 			var post = {
 					ps: $( '#find-posts-input' ).val(),
 					action: 'rsrc_find_posts',
-					_ajax_nonce: $('#_ajax_nonce').val(),
+					_ajax_nonce: $( '#_ajax_nonce' ).val(),
 					post_type: $pt
 				},
 				spinner = $( '.find-box-search .spinner' );
@@ -76,9 +76,9 @@ var bawmrpFindPosts;
 
 	$( document ).ready(function() {
 		
-		function bawmrp_open_find_posts_dialog( e ) {
+		function rsrc_open_find_posts_dialog( e ) {
 			e.preventDefault();
-			bawmrpFindPosts.open( 'from_post', bawmrp_js.ID ); 
+			rsrcFindPosts.open( 'from_post', rsrc_js.ID ); 
 		}
 
 		$( '#find-posts-submit' ).on( 'click', function( e ) {
@@ -88,19 +88,19 @@ var bawmrpFindPosts;
 		});
 		$( '#find-posts .find-box-search :input' ).on( 'keypress', function( e ) {
 			if ( 13 == e.which ) {
-				bawmrpFindPosts.send();
+				rsrcFindPosts.send();
 				return false;
 			}
 		} );
-		$( '#find-posts-search' ).on( 'click', bawmrpFindPosts.send );
-		$( '#find-posts-close' ).on( 'click', bawmrpFindPosts.close );
+		$( '#find-posts-search' ).on( 'click', rsrcFindPosts.send );
+		$( '#find-posts-close' ).on( 'click', rsrcFindPosts.close );
 			
-		$( '#bawmrp_open_find_posts_button' ).on( 'click', bawmrp_open_find_posts_dialog );
+		$( '#rsrc_open_find_posts_button' ).on( 'click', rsrc_open_find_posts_dialog );
 		
-		$( '#bawmrp_delete_related_posts' ).on( 'click', function() {
+		$( '#rsrc_delete_related_posts' ).on( 'click', function() {
 			$( '.related-posts' ).animate( { opacity: 0 }, 500, function() { 
 																$( this ).html( '' ) ;
-																$( '#bawmrp_post_ids' ) .val( '' );
+																$( '#rsrc_post_ids' ) .val( '' );
 																$( this ).css( 'opacity', '1' ) ;
 															}
 			);
@@ -114,7 +114,7 @@ var bawmrpFindPosts;
 				$( '.related-posts li' ).each( function( i, item ) {
 					ids.push( $( item ).attr( 'data-id' ) );
 				});
-				$( '#bawmrp_post_ids' ).val( ids.join( ',' ) );
+				$( '#rsrc_post_ids' ).val( ids.join( ',' ) );
 			},
 			'revert': true,
 			'placeholder': 'sortable-placeholder',
@@ -134,14 +134,14 @@ var bawmrpFindPosts;
 			$( 'input[name="found_post_id[]"]:checked' ).each( function( id ) {
 				var selectedID = $( this ).val();
 				var posts_ids = new Array();
-				posts_ids = $( '#bawmrp_post_ids' ).val() != '' ? $( '#bawmrp_post_ids' ).val().split( ',' ) : [];
-				if ( $.inArray( selectedID, posts_ids ) == '-1' && selectedID != bawmrp_js.ID ) {
+				posts_ids = $( '#rsrc_post_ids' ).val() != '' ? $( '#rsrc_post_ids' ).val().split( ',' ) : [];
+				if ( $.inArray( selectedID, posts_ids ) == '-1' && selectedID != rsrc_js.ID ) {
 					posts_ids.push( selectedID );
-					$( '#bawmrp_post_ids' ).val( posts_ids );
+					$( '#rsrc_post_ids' ).val( posts_ids );
 					$( this ).parent().parent().css( 'background', '#ff0000' ).fadeOut( 500, function() { $( this ).remove() } );
 					var label = $( this ).parent().next().text();
 					label = label.replace( /</g, '&lt;' ).replace( />/g, '&gt;' );
-					var elem_li = '<li data-id="' + selectedID + '"><span><a class="erase_yyarpp"><span class="dashicons dashicons-dismiss"></span></a>&nbsp;&nbsp;' + label + '</span></li>';
+					var elem_li = '<li data-id="' + selectedID + '"><span><a class="delete_related_post"><span class="dashicons dashicons-dismiss"></span></a>&nbsp;&nbsp;' + label + '</span></li>';
 					$( '.related-posts' ).append( elem_li );
 				}
 			});
@@ -150,8 +150,8 @@ var bawmrpFindPosts;
 
 		setInterval( function()	{
 			if ( $( '#find-posts-response input:checkbox' ).length > 0 ) {
-				var $forbidden_ids = $( '#bawmrp_post_ids' ).val().split( ',' );
-				$( '#find-posts-response input[value="' + bawmrp_js.ID + '"]' )
+				var $forbidden_ids = $( '#rsrc_post_ids' ).val().split( ',' );
+				$( '#find-posts-response input[value="' + rsrc_js.ID + '"]' )
 					.attr( 'disabled', 'disabled' );
 				$( '#find-posts-response input' ).filter( function( i ) { 
 						return $.inArray( $( this ).val(), $forbidden_ids ) >- 1;
@@ -160,12 +160,12 @@ var bawmrpFindPosts;
 			}
 		}, 100 );
 		
-		$( '.erase_yyarpp' ).on( 'click', function() {
+		$( '.delete_related_post' ).on( 'click', function() {
 			var id = $( this ).parent().parent().attr( 'data-id' );
 			$( this ).parent().parent().fadeOut( 500, function() { $( this ).remove() } );
-			var posts_ids = ',' + $( '#bawmrp_post_ids' ).val() + ',';
+			var posts_ids = ',' + $( '#rsrc_post_ids' ).val() + ',';
 			posts_ids = posts_ids.replace( ',' + id + ',', ',' );
-			$( '#bawmrp_post_ids' ).val( posts_ids.length > 1 ? posts_ids.substring( 1, posts_ids.length-1 ) : '' );
+			$( '#rsrc_post_ids' ).val( posts_ids.length > 1 ? posts_ids.substring( 1, posts_ids.length-1 ) : '' );
 		});
 		
 	});

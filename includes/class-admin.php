@@ -72,9 +72,9 @@ final class Really_Simple_Related_Content_Admin {
 	 */
 	function admin_enqueue_scripts( $hook ) {
 		global $post;
-		wp_enqueue_style( 'really-simple-related-content-css', plugins_url( '/css/admin.css', dirname( __FILE__ ) ) );
+		wp_enqueue_style( 'really-simple-related-content-css', plugins_url( '/assets/css/admin.css', dirname( __FILE__ ) ) );
 		if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
-			wp_enqueue_script( 'really-simple-related-content', plugins_url( '/js/backend.js', dirname( __FILE__ ) ), array( 'jquery' ), false, true );
+			wp_enqueue_script( 'really-simple-related-content', plugins_url( '/assets/js/backend.js', dirname( __FILE__ ) ), array( 'jquery' ), false, true );
 			wp_localize_script( 'really-simple-related-content', 'rsrc_js', array( 'ID' => $post->ID ) );
 		}
 	}

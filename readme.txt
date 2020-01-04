@@ -1,4 +1,4 @@
-=== Really Simple Related Content ===
+=== Rather Simple Related Content ===
 Contributors: Oscar Ciutat
 Tags: related, posts, content, custom, types, manual
 Requires at least: 4.0

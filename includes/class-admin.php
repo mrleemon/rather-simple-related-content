@@ -2,14 +2,14 @@
 /**
  * The admin class for the plugin.
  *
- * @package   Really Simple Related Content
+ * @package   Rather Simple Related Content
  * @since     1.0
  * @author    Oscar Ciutat
  * @copyright Copyright (c) 2017, Oscar Ciutat
  * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
-final class Really_Simple_Related_Content_Admin {
+final class Rather_Simple_Related_Content_Admin {
 
     /**
      * Holds the instance of this class.
@@ -60,8 +60,8 @@ final class Really_Simple_Related_Content_Admin {
      * Adds action links.
      */
     public function add_action_links( $links, $file ) {
-        if ( preg_match( '/really-simple-related-content\.php/i', $file ) ) {
-            $links[] = '<a href="' . admin_url( 'options-general.php?page=really-simple-related-content' ) . '">' . __( 'Settings' ) . '</a>';
+        if ( preg_match( '/rather-simple-related-content\.php/i', $file ) ) {
+            $links[] = '<a href="' . admin_url( 'options-general.php?page=rather-simple-related-content' ) . '">' . __( 'Settings' ) . '</a>';
         }
         return $links;
     }
@@ -72,10 +72,10 @@ final class Really_Simple_Related_Content_Admin {
      */
     function admin_enqueue_scripts( $hook ) {
         global $post;
-        wp_enqueue_style( 'really-simple-related-content-css', plugins_url( '/assets/css/admin.css', dirname( __FILE__ ) ) );
+        wp_enqueue_style( 'rather-simple-related-content-css', plugins_url( '/assets/css/admin.css', dirname( __FILE__ ) ) );
         if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
-            wp_enqueue_script( 'really-simple-related-content', plugins_url( '/assets/js/backend.js', dirname( __FILE__ ) ), array( 'jquery' ), false, true );
-            wp_localize_script( 'really-simple-related-content', 'rsrc_js', array( 'ID' => $post->ID ) );
+            wp_enqueue_script( 'rather-simple-related-content', plugins_url( '/assets/js/backend.js', dirname( __FILE__ ) ), array( 'jquery' ), false, true );
+            wp_localize_script( 'rather-simple-related-content', 'rsrc_js', array( 'ID' => $post->ID ) );
         }
     }
 
@@ -84,7 +84,7 @@ final class Really_Simple_Related_Content_Admin {
     * admin_menu
     */
     function admin_menu() {
-        add_options_page( __( 'Really Simple Related Content', 'really-simple-related-content' ), __( 'Really Simple Related Content', 'really-simple-related-content' ), 'manage_options', 'really-simple-related-content', array( $this, 'options_page' ) );
+        add_options_page( __( 'Rather Simple Related Content', 'rather-simple-related-content' ), __( 'Rather Simple Related Content', 'rather-simple-related-content' ), 'manage_options', 'rather-simple-related-content', array( $this, 'options_page' ) );
     }
 
 
@@ -92,12 +92,12 @@ final class Really_Simple_Related_Content_Admin {
     * admin_init
     */
     function admin_init() {
-        register_setting( 'really-simple-related-content-settings', 'rsrc_settings', array( $this, 'sanitize_settings' ) );
-        add_settings_section( 'layout-section', __( 'General', 'really-simple-related-content' ), null, 'really-simple-related-content' );
-        add_settings_field( 'header', __( 'Header', 'really-simple-related-content' ), array( $this, 'header_callback' ), 'really-simple-related-content', 'layout-section', array( 'class' => 'header' ) );
-        add_settings_field( 'layout', __( 'Layout', 'really-simple-related-content' ), array( $this, 'layout_callback' ), 'really-simple-related-content', 'layout-section', array( 'class' => 'layout' ) );
-        add_settings_field( 'thumbnail_size', __( 'Thumbnail Size', 'really-simple-related-content' ), array( $this, 'thumbnail_size_callback' ), 'really-simple-related-content', 'layout-section', array( 'class' => 'thumbnail_size' ) );
-        add_settings_field( 'post_types', __( 'Post Types', 'really-simple-related-content' ), array( $this, 'post_types_callback' ), 'really-simple-related-content', 'layout-section', array( 'class' => 'post_types' ) );
+        register_setting( 'rather-simple-related-content-settings', 'rsrc_settings', array( $this, 'sanitize_settings' ) );
+        add_settings_section( 'layout-section', __( 'General', 'rather-simple-related-content' ), null, 'rather-simple-related-content' );
+        add_settings_field( 'header', __( 'Header', 'rather-simple-related-content' ), array( $this, 'header_callback' ), 'rather-simple-related-content', 'layout-section', array( 'class' => 'header' ) );
+        add_settings_field( 'layout', __( 'Layout', 'rather-simple-related-content' ), array( $this, 'layout_callback' ), 'rather-simple-related-content', 'layout-section', array( 'class' => 'layout' ) );
+        add_settings_field( 'thumbnail_size', __( 'Thumbnail Size', 'rather-simple-related-content' ), array( $this, 'thumbnail_size_callback' ), 'rather-simple-related-content', 'layout-section', array( 'class' => 'thumbnail_size' ) );
+        add_settings_field( 'post_types', __( 'Post Types', 'rather-simple-related-content' ), array( $this, 'post_types_callback' ), 'rather-simple-related-content', 'layout-section', array( 'class' => 'post_types' ) );
     }
 
 
@@ -107,10 +107,10 @@ final class Really_Simple_Related_Content_Admin {
     function options_page() {
     ?>
     <div class="wrap">
-        <h2><?php _e( 'Really Simple Related Content', 'really-simple-related-content' ); ?></h2>
+        <h2><?php _e( 'Rather Simple Related Content', 'rather-simple-related-content' ); ?></h2>
         <form action="options.php" method="post">
-            <?php settings_fields( 'really-simple-related-content-settings' ); ?>
-            <?php do_settings_sections( 'really-simple-related-content' ); ?>
+            <?php settings_fields( 'rather-simple-related-content-settings' ); ?>
+            <?php do_settings_sections( 'rather-simple-related-content' ); ?>
             <?php submit_button(); ?>
         </form>
     </div>
@@ -125,8 +125,8 @@ final class Really_Simple_Related_Content_Admin {
         $settings = (array) get_option( 'rsrc_settings' );
         $layout = isset( $settings['layout'] ) ? $settings['layout'] : 'thumbnails';
         $layout_options = array( 
-            'list' => __( 'List', 'really-simple-related-content' ),
-            'thumbnails'  => __( 'Thumbnails', 'really-simple-related-content' )
+            'list' => __( 'List', 'rather-simple-related-content' ),
+            'thumbnails'  => __( 'Thumbnails', 'rather-simple-related-content' )
         );
     ?>
         <ul>
@@ -194,7 +194,7 @@ final class Really_Simple_Related_Content_Admin {
     */
     function header_callback() {
         $settings = (array) get_option( 'rsrc_settings' );
-        $header = isset( $settings['header'] ) ? $settings['header'] : __( 'Related Content', 'really-simple-related-content' );
+        $header = isset( $settings['header'] ) ? $settings['header'] : __( 'Related Content', 'rather-simple-related-content' );
     ?>
         <input name="rsrc_settings[header]" type="text" id="rsrc_settings[header]" value="<?php echo esc_attr( $header ); ?>" class="regular-text" /> 
     <?php
@@ -206,15 +206,6 @@ final class Really_Simple_Related_Content_Admin {
     */
     function sanitize_settings( $input ) {
         $settings = (array) get_option( 'rsrc_settings' );
-    
-        /*if ( $input['archive_item_width'] <= 0 ) {
-            add_settings_error( 'rsrc_settings', 'invalid-archive_item_width', __( 'You have entered an invalid value into the width field.', 'really-simple-related-content' ) );
-        }
-    
-        if ( $input['archive_item_height'] <= 0 ) {
-            add_settings_error( 'rsrc_settings', 'invalid-archive_item_height', __( 'You have entered an invalid value into the height field.', 'really-simple-related-content' ) );
-        }*/
-
         return $input;
     }
     
@@ -232,7 +223,7 @@ final class Really_Simple_Related_Content_Admin {
             ?>
             <div id="find-posts" class="find-box" style="display:none;">
                 <div id="find-posts-head" class="find-box-head">
-                    <?php _e( 'Find related content', 'really-simple-related-content' ); ?>
+                    <?php _e( 'Find related content', 'rather-simple-related-content' ); ?>
                     <button type="button" id="find-posts-close"><span class="screen-reader-text"><?php _e( 'Close' ); ?></span></button>
                 </div>
                 <div class="find-box-inside">
@@ -281,7 +272,7 @@ final class Really_Simple_Related_Content_Admin {
         $settings = (array) get_option( 'rsrc_settings' );
         $post_types = $settings['post_types'];
         if ( !empty( $post_types ) ) {
-            add_meta_box( 'related-content', __( 'Related Content', 'really-simple-related-content' ), array( $this, 'related_content_meta_box' ), $post_types, 'normal', 'low' );
+            add_meta_box( 'related-content', __( 'Related Content', 'rather-simple-related-content' ), array( $this, 'related_content_meta_box' ), $post_types, 'normal', 'low' );
         }
     }
 
@@ -292,7 +283,7 @@ final class Really_Simple_Related_Content_Admin {
   
     function related_content_meta_box() {
         global $post;
-        $ids = Really_Simple_Related_Content::get_instance()->get_related_posts_ids( $post->ID );
+        $ids = Rather_Simple_Related_Content::get_instance()->get_related_posts_ids( $post->ID );
         $ids = is_array( $ids ) ? '' : $ids;
     ?>
     <div>
@@ -310,8 +301,8 @@ final class Really_Simple_Related_Content_Admin {
             ?>
         </ul>
         <div>
-            <a href="javascript:void(0);" id="rsrc_open_find_posts_button" class="button hide-if-no-js"><?php _e( 'Add related content', 'really-simple-related-content' ); ?></a>
-            <span class="hide-if-js"><?php _e( 'Add posts IDs from posts you want to relate, comma separated.', 'really-simple-related-content' ); ?></span>
+            <a href="javascript:void(0);" id="rsrc_open_find_posts_button" class="button hide-if-no-js"><?php _e( 'Add related content', 'rather-simple-related-content' ); ?></a>
+            <span class="hide-if-js"><?php _e( 'Add posts IDs from posts you want to relate, comma separated.', 'rather-simple-related-content' ); ?></span>
             <span class="clear-link"><a href="javascript:void(0);" id="rsrc_delete_related_posts" class="delete hide-if-no-js"><?php _e( 'Clear List' ); ?></a></span>
         </div>
     </div>
@@ -437,6 +428,4 @@ final class Really_Simple_Related_Content_Admin {
     
 }
 
-Really_Simple_Related_Content_Admin::get_instance();
-
-?>
+Rather_Simple_Related_Content_Admin::get_instance();

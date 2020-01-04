@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: Really Simple Related Content
-Plugin URI: http://wordpress.org/plugins/really-simple-related-content/
+Plugin Name: Rather Simple Related Content
+Plugin URI: http://wordpress.org/plugins/rather-simple-related-content/
 Version: v1.0
 Plugin URI:
 Author: Oscar Ciutat
@@ -9,7 +9,7 @@ Author URI: http://oscarciutat.com/code/
 Description: A really simple manual related posts plugin
 */
 
-class Really_Simple_Related_Content {
+class Rather_Simple_Related_Content {
 
     /**
      * Plugin instance.
@@ -45,7 +45,7 @@ class Really_Simple_Related_Content {
      */
     public function plugin_setup() {
 
-          $this->includes();
+        $this->includes();
 
         add_action( 'init', array( $this, 'load_language' ) );
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
@@ -80,7 +80,7 @@ class Really_Simple_Related_Content {
      *
      */
     function load_language() {
-        load_plugin_textdomain( 'really-simple-related-content', '', dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+        load_plugin_textdomain( 'rather-simple-related-content', '', dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
     }
 
     
@@ -88,7 +88,7 @@ class Really_Simple_Related_Content {
      * enqueue_scripts
      */
     function enqueue_scripts() {
-        wp_enqueue_style( 'really-simple-related-content-css', plugins_url( '/style.css', __FILE__) );
+        wp_enqueue_style( 'rather-simple-related-content-css', plugins_url( '/style.css', __FILE__) );
     }
 
 
@@ -108,7 +108,7 @@ class Really_Simple_Related_Content {
     */
     function get_related_content( $post_id ) {
         $settings = (array) get_option( 'rsrc_settings' );
-        $header = isset( $settings['header'] ) ? $settings['header'] : __( 'Related Content', 'really-simple-related-content' );
+        $header = isset( $settings['header'] ) ? $settings['header'] : __( 'Related Content', 'rather-simple-related-content' );
         $layout = isset( $settings['layout'] ) ? $settings['layout'] : 'thumbnails';
         $thumbnail_size = isset( $settings['thumbnail_size'] ) ? $settings['thumbnail_size'] : 'thumbnail';
         $ids = wp_parse_id_list( $this->get_related_posts_ids( $post_id ) );
@@ -147,7 +147,7 @@ class Really_Simple_Related_Content {
                 $width = get_option( $size. '_size_w' );
                 $height = get_option( $size. '_size_h' );
             } 
-            $placeholder = apply_filters( 'really_simple_related_content_placeholder_url', plugins_url( '/assets/images/placeholder.png', __FILE__ ) );
+            $placeholder = apply_filters( 'rather_simple_related_content_placeholder_url', plugins_url( '/assets/images/placeholder.png', __FILE__ ) );
             $html .= '<img src="' . $placeholder . '" width="' . $width . '" height="' . $height . '" alt="' . esc_attr( get_the_title( $id ) ) . '" />';
         }
         
@@ -162,4 +162,4 @@ class Really_Simple_Related_Content {
 
 }
 
-add_action( 'plugins_loaded', array ( Really_Simple_Related_Content::get_instance(), 'plugin_setup' ) );
+add_action( 'plugins_loaded', array ( Rather_Simple_Related_Content::get_instance(), 'plugin_setup' ) );

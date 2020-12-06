@@ -74,7 +74,7 @@ var rsrcFindPosts;
 		}
 	};
 
-	$( document ).ready(function() {
+	$( function() {
 		
 		function rsrc_open_find_posts_dialog( e ) {
 			e.preventDefault();

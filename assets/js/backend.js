@@ -19,7 +19,7 @@ var rsrcFindPosts;
 
 			$( '#find-posts' ).show();
 
-			$( '#find-posts-input' ).focus().on( 'keyup', function( e ) {
+			$( '#find-posts-input' ).trigger( 'focus' ).on( 'keyup', function( e ) {
 				if ( e.which == 27 ) {
 					rsrcFindPosts.close();
 				} // close on Escape
@@ -46,7 +46,7 @@ var rsrcFindPosts;
 
 		send: function() {
 			var $pt = '';
-			$( 'input[name="find-posts-what[]"]:checked' ).each(function() {
+			$( 'input[name="find-posts-what[]"]:checked' ).each( function() {
 				$pt += $( this ).val() + ',';
 			});
 			var post = {
@@ -152,11 +152,11 @@ var rsrcFindPosts;
 			if ( $( '#find-posts-response input:checkbox' ).length > 0 ) {
 				var $forbidden_ids = $( '#rsrc_post_ids' ).val().split( ',' );
 				$( '#find-posts-response input[value="' + rsrc_js.ID + '"]' )
-					.attr( 'disabled', 'disabled' );
+					.prop( 'disabled', true );
 				$( '#find-posts-response input' ).filter( function( i ) { 
-						return $.inArray( $( this ).val(), $forbidden_ids ) >- 1;
+						return $.inArray( $( this ).val(), $forbidden_ids ) > -1;
 				} )
-				.attr( 'disabled', 'disabled' ).attr( 'checked', 'checked' );
+				.prop( 'disabled', true ).prop( 'checked', true );
 			}
 		}, 100 );
 		
@@ -165,7 +165,7 @@ var rsrcFindPosts;
 			$( this ).parent().parent().fadeOut( 500, function() { $( this ).remove() } );
 			var posts_ids = ',' + $( '#rsrc_post_ids' ).val() + ',';
 			posts_ids = posts_ids.replace( ',' + id + ',', ',' );
-			$( '#rsrc_post_ids' ).val( posts_ids.length > 1 ? posts_ids.substring( 1, posts_ids.length-1 ) : '' );
+			$( '#rsrc_post_ids' ).val( posts_ids.length > 1 ? posts_ids.substring( 1, posts_ids.length - 1 ) : '' );
 		});
 		
 	});

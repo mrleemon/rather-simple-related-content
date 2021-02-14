@@ -163,8 +163,8 @@ var rsrcFindPosts;
         // Delete related posts. The click event must be attached to a static parent
         // node in order to work with dynamically added related post entries
 		$( '.related-posts' ).on( 'click', '.delete_related_post', function() {
-			var id = $( this ).parent().parent().attr( 'data-id' );
-			$( this ).parent().parent().fadeOut( 500, function() { $( this ).remove() } );
+            var id = $( this ).closest( 'li' ).attr( 'data-id' );
+            $( this ).closest( 'li' ).fadeOut( 500, function() { $( this ).remove() } );
 			var posts_ids = ',' + $( '#rsrc_post_ids' ).val() + ',';
 			posts_ids = posts_ids.replace( ',' + id + ',', ',' );
 			$( '#rsrc_post_ids' ).val( posts_ids.length > 1 ? posts_ids.substring( 1, posts_ids.length - 1 ) : '' );

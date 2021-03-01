@@ -1,27 +1,27 @@
 .related-content {
-	width: 100%;
-	margin: 20px 0;
-	padding-top: 20px;
-	border-top-width: 1px;
-	border-top-style: solid;
+    width: 100%;
+    margin: 20px 0;
+    padding-top: 20px;
+    border-top-width: 1px;
+    border-top-style: solid;
 }
-	
+    
 .related-content h3 {
-	margin-bottom: 20px;
-	font-size: 2.0rem;
-	line-height: 1.8;
+    margin-bottom: 20px;
+    font-size: 2.0rem;
+    line-height: 1.8;
 }
 
 .related-content ul {
-	margin: 0;
-	list-style: none;
+    margin: 0;
+    list-style: none;
 }
 
 .related-content ul.layout-thumbnails {
-	display: flex;
+    display: flex;
     flex-wrap: wrap;
 }
 
 .related-content ul.layout-thumbnails li {
-	margin: 0 2px 2px 0;
+    margin: 0 2px 2px 0;
 }

@@ -80,17 +80,17 @@ final class Rather_Simple_Related_Content_Admin {
     }
 
 
-    /*
-    * admin_menu
-    */
+    /**
+     * admin_menu
+     */
     function admin_menu() {
         add_options_page( __( 'Rather Simple Related Content', 'rather-simple-related-content' ), __( 'Rather Simple Related Content', 'rather-simple-related-content' ), 'manage_options', 'rather-simple-related-content', array( $this, 'options_page' ) );
     }
 
 
-    /*
-    * admin_init
-    */
+    /**
+     * admin_init
+     */
     function admin_init() {
         register_setting( 'rather-simple-related-content-settings', 'rsrc_settings', array( $this, 'sanitize_settings' ) );
         add_settings_section( 'layout-section', __( 'General', 'rather-simple-related-content' ), null, 'rather-simple-related-content' );
@@ -101,9 +101,9 @@ final class Rather_Simple_Related_Content_Admin {
     }
 
 
-    /*
-    * options_page
-    */
+    /**
+     * options_page
+     */
     function options_page() {
     ?>
     <div class="wrap">
@@ -118,9 +118,9 @@ final class Rather_Simple_Related_Content_Admin {
     }
 
     
-    /*
-    * layout_callback
-    */
+    /**
+     * layout_callback
+     */
     function layout_callback() {
         $settings = (array) get_option( 'rsrc_settings' );
         $layout = isset( $settings['layout'] ) ? $settings['layout'] : 'thumbnails';
@@ -143,9 +143,9 @@ final class Rather_Simple_Related_Content_Admin {
     }
     
 
-    /*
-    * thumbnail_size_callback
-    */
+    /**
+     * thumbnail_size_callback
+     */
     function thumbnail_size_callback() {
         $settings = (array) get_option( 'rsrc_settings' );
         $thumbnail_size = isset( $settings['thumbnail_size'] ) ? $settings['thumbnail_size'] : 'thumbnail';
@@ -162,9 +162,9 @@ final class Rather_Simple_Related_Content_Admin {
     }
 
     
-    /*
-    * post_types_callback
-    */
+    /**
+     * post_types_callback
+     */
     function post_types_callback() {
         $settings = (array) get_option( 'rsrc_settings' );
         $post_types = !empty( $settings['post_types'] ) ? $settings['post_types'] : array();
@@ -189,9 +189,9 @@ final class Rather_Simple_Related_Content_Admin {
     }
 
 
-    /*
-    * header_callback
-    */
+    /**
+     * header_callback
+     */
     function header_callback() {
         $settings = (array) get_option( 'rsrc_settings' );
         $header = isset( $settings['header'] ) ? $settings['header'] : __( 'Related Content', 'rather-simple-related-content' );
@@ -201,9 +201,9 @@ final class Rather_Simple_Related_Content_Admin {
     }
 
     
-    /*
-    * sanitize_settings
-    */
+    /**
+     * sanitize_settings
+     */
     function sanitize_settings( $input ) {
         $settings = (array) get_option( 'rsrc_settings' );
         return $input;
@@ -237,7 +237,12 @@ final class Rather_Simple_Related_Content_Admin {
                         <div class="clear"></div>
                         <div class="find-box-options">
                         <?php
-                        $post_types = get_post_types( array( 'public' => true, 'show_ui' => true ), 'objects' );
+                        $args = array(
+                            'show_ui'             => true,
+                            'public'              => true,
+                            'exclude_from_search' => false
+                        );
+                        $post_types = get_post_types( $args, 'objects' );
                         foreach ( $post_types as $post_type ) {
                             if ( 'attachment' == $post_type->name ) {
                                 continue;

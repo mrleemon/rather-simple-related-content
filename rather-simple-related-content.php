@@ -3,7 +3,6 @@
 Plugin Name: Rather Simple Related Content
 Plugin URI: http://wordpress.org/plugins/rather-simple-related-content/
 Version: v1.0
-Plugin URI:
 Author: Oscar Ciutat
 Author URI: http://oscarciutat.com/code/
 Description: A really simple manual related posts plugin
@@ -18,7 +17,6 @@ class Rather_Simple_Related_Content {
      *
      */
     protected static $instance = null;
-
 
     /**
      * Access this plugin’s working instance
@@ -35,7 +33,6 @@ class Rather_Simple_Related_Content {
         return self::$instance;
 
     }
-
     
     /**
      * Used for regular plugin work.
@@ -51,7 +48,6 @@ class Rather_Simple_Related_Content {
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_action( 'get_related_content', array( $this, 'get_related_content' ) );
     }
-
     
     /**
      * Constructor. Intentionally left empty and public.
@@ -61,8 +57,7 @@ class Rather_Simple_Related_Content {
      */
     public function __construct() {}
     
-    
-     /**
+    /**
      * Includes required core files used in admin and on the frontend.
      *
      * @since 1.0
@@ -71,7 +66,6 @@ class Rather_Simple_Related_Content {
     protected function includes() {
         include_once 'includes/class-admin.php';
     }
-
 
     /**
      * Loads language
@@ -82,7 +76,6 @@ class Rather_Simple_Related_Content {
     function load_language() {
         load_plugin_textdomain( 'rather-simple-related-content', '', dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
     }
-
     
     /**
      * enqueue_scripts
@@ -91,21 +84,19 @@ class Rather_Simple_Related_Content {
         wp_enqueue_style( 'rather-simple-related-content-css', plugins_url( '/style.css', __FILE__) );
     }
 
-
-    /*
-    * get_related_posts_ids
-    */
+    /**
+     * get_related_posts_ids
+     */
     function get_related_posts_ids( $post_id ) {
         $settings = (array) get_option( 'rsrc_settings' );
         $ids = get_post_meta( $post_id, '_rsrc_posts_ids', true );
         $ids = ! empty( $ids ) ? implode( ',', wp_parse_id_list( $ids ) ) : array();
         return $ids;
     }
-
     
-    /*
-    * get_related_content
-    */
+    /**
+     * get_related_content
+     */
     function get_related_content( $post_id ) {
         $settings = (array) get_option( 'rsrc_settings' );
         $header = isset( $settings['header'] ) ? $settings['header'] : __( 'Related Content', 'rather-simple-related-content' );
@@ -128,11 +119,10 @@ class Rather_Simple_Related_Content {
         }
 
     }
-
     
-    /*
-    * get_post_thumbnail
-    */
+    /**
+     * get_post_thumbnail
+     */
     function get_post_thumbnail( $id = null, $size = 'thumbnail' ) {
         $post = get_post( $id );
         

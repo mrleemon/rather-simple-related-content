@@ -108,10 +108,12 @@ class Rather_Simple_Related_Content {
                      <h2>' . $header . '</h2>
                      <ul class="layout-' . $layout . '">';
             foreach( $ids as $id ) {
-                if ( $layout == 'list' ) {
-                    $html .= '<li><h3 class="entry-title"><a href="' . esc_url( apply_filters( 'the_permalink', get_permalink( $id ) ) ) . '">' . get_the_title( $id ) . '</a></h3></li>';
-                } else {
-                    $html .= '<li>' . $this->get_post_thumbnail( $id, $thumbnail_size ) . '</li>';
+                if ( get_post_status ( $id ) ) {
+                    if ( $layout == 'list' ) {
+                        $html .= '<li><h3 class="entry-title"><a href="' . esc_url( apply_filters( 'the_permalink', get_permalink( $id ) ) ) . '">' . get_the_title( $id ) . '</a></h3></li>';
+                    } else {
+                        $html .= '<li>' . $this->get_post_thumbnail( $id, $thumbnail_size ) . '</li>';
+                    }
                 }
             }
             $html .= '</ul></div>';

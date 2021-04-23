@@ -35,7 +35,6 @@ final class Rather_Simple_Related_Content_Admin {
 
         return self::$instance;
     }
-
     
     /**
      * Plugin setup.
@@ -55,7 +54,6 @@ final class Rather_Simple_Related_Content_Admin {
 
     }
 
-
     /**
      * Adds action links.
      */
@@ -66,7 +64,6 @@ final class Rather_Simple_Related_Content_Admin {
         return $links;
     }
 
-    
     /**
      * Enqueues scripts in the backend.
      */
@@ -79,14 +76,12 @@ final class Rather_Simple_Related_Content_Admin {
         }
     }
 
-
     /**
      * admin_menu
      */
     function admin_menu() {
         add_options_page( __( 'Rather Simple Related Content', 'rather-simple-related-content' ), __( 'Rather Simple Related Content', 'rather-simple-related-content' ), 'manage_options', 'rather-simple-related-content', array( $this, 'options_page' ) );
     }
-
 
     /**
      * admin_init
@@ -99,7 +94,6 @@ final class Rather_Simple_Related_Content_Admin {
         add_settings_field( 'thumbnail_size', __( 'Thumbnail Size', 'rather-simple-related-content' ), array( $this, 'thumbnail_size_callback' ), 'rather-simple-related-content', 'layout-section', array( 'class' => 'thumbnail_size' ) );
         add_settings_field( 'post_types', __( 'Post Types', 'rather-simple-related-content' ), array( $this, 'post_types_callback' ), 'rather-simple-related-content', 'layout-section', array( 'class' => 'post_types' ) );
     }
-
 
     /**
      * options_page
@@ -117,7 +111,6 @@ final class Rather_Simple_Related_Content_Admin {
     <?php
     }
 
-    
     /**
      * layout_callback
      */
@@ -142,7 +135,6 @@ final class Rather_Simple_Related_Content_Admin {
     <?php
     }
     
-
     /**
      * thumbnail_size_callback
      */
@@ -160,7 +152,6 @@ final class Rather_Simple_Related_Content_Admin {
         </select>
     <?php
     }
-
     
     /**
      * post_types_callback
@@ -188,7 +179,6 @@ final class Rather_Simple_Related_Content_Admin {
     <?php
     }
 
-
     /**
      * header_callback
      */
@@ -199,7 +189,6 @@ final class Rather_Simple_Related_Content_Admin {
         <input name="rsrc_settings[header]" type="text" id="rsrc_settings[header]" value="<?php echo esc_attr( $header ); ?>" class="regular-text" /> 
     <?php
     }
-
     
     /**
      * sanitize_settings
@@ -208,7 +197,6 @@ final class Rather_Simple_Related_Content_Admin {
         $settings = (array) get_option( 'rsrc_settings' );
         return $input;
     }
-    
     
     /**
      * print_find_posts_modal
@@ -268,11 +256,9 @@ final class Rather_Simple_Related_Content_Admin {
         }
     }
 
-
-    /*
-    * add_meta_boxes
-    */
-
+    /**
+     * add_meta_boxes
+     */
     function add_meta_boxes() {
         $settings = (array) get_option( 'rsrc_settings' );
         $post_types = $settings['post_types'];
@@ -281,11 +267,9 @@ final class Rather_Simple_Related_Content_Admin {
         }
     }
 
-
-    /*
-    * related_content_meta_box
-    */
-  
+    /**
+     * related_content_meta_box
+     */
     function related_content_meta_box() {
         global $post;
         $ids = Rather_Simple_Related_Content::get_instance()->get_related_posts_ids( $post->ID );
@@ -298,8 +282,14 @@ final class Rather_Simple_Related_Content_Admin {
             <?php
             if ( ! empty( $ids ) ) {
                 $ids = wp_parse_id_list( $ids );
-                foreach( $ids as $id ) { ?>
-                    <li data-id="<?php echo (int)$id; ?>"><span><a class="hide-if-no-js delete_related_post"><span class="dashicons dashicons-dismiss"></span></a>&nbsp;&nbsp;<?php echo get_the_title( (int) $id ); ?></span></li>
+                foreach( $ids as $id ) {
+                    if ( get_post_status( $id ) ) {
+                        $title = get_the_title( (int) $id );
+                    } else {
+                        $title = __( '(Deleted)', 'rather-simple-related-content' );
+                    }
+                ?>
+                    <li data-id="<?php echo (int) $id; ?>"><span><a class="hide-if-no-js delete_related_post"><span class="dashicons dashicons-dismiss"></span></a>&nbsp;&nbsp;<?php echo $title; ?></span></li>
                 <?php
                 }
             }
@@ -313,12 +303,10 @@ final class Rather_Simple_Related_Content_Admin {
     </div>
     <?php
     }
-
     
-    /*
-    * save_post
-    */
- 
+    /**
+     * save_post
+     */
     function save_post( $post_id ) {
         // verify nonce
         if ( isset( $_POST['metabox_nonce'] ) && !wp_verify_nonce( $_POST['metabox_nonce'], basename( __FILE__ ) ) ) {
@@ -348,11 +336,9 @@ final class Rather_Simple_Related_Content_Admin {
         
     }
 
-    
-    /*
-    * rsrc_find_posts
-    */
-
+    /**
+     * rsrc_find_posts
+     */
     function rsrc_find_posts() {
         global $wpdb;
 
@@ -363,7 +349,7 @@ final class Rather_Simple_Related_Content_Admin {
             $posttype = get_post_type_object( $pt[0] );
             wp_die( $posttype->labels->not_found );
         }
-        $post_types = get_post_types( array( 'public' => true, 'show_ui'=>true ) );
+        $post_types = get_post_types( array( 'public' => true, 'show_ui' => true ) );
         $in_array = array_intersect( $pt, $post_types );
         if ( !empty( $_POST['post_type'] ) && !empty( $in_array ) ) {
             $what = "'" . implode( "','", $in_array ) . "'";
@@ -429,7 +415,6 @@ final class Rather_Simple_Related_Content_Admin {
         ));
         $x->send();
     }
-
     
 }
 

@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Rather Simple Related Content\n"
-"POT-Creation-Date: 2020-01-04 12:17+0100\n"
-"PO-Revision-Date: 2020-01-04 12:17+0100\n"
+"POT-Creation-Date: 2021-04-23 08:39+0200\n"
+"PO-Revision-Date: 2021-04-23 08:40+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.4.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: rather-simple-related-content.php\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -20,110 +20,114 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: includes/class-admin.php:64
+#: includes/class-admin.php:62
 msgid "Settings"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-#: includes/class-admin.php:87 includes/class-admin.php:110
+#: includes/class-admin.php:83 includes/class-admin.php:104
 msgid "Rather Simple Related Content"
 msgstr ""
 
-#: includes/class-admin.php:96
+#: includes/class-admin.php:91
 msgid "General"
 msgstr "General"
 
-#: includes/class-admin.php:97
+#: includes/class-admin.php:92
 msgid "Header"
 msgstr "Cabecera"
 
-#: includes/class-admin.php:98
+#: includes/class-admin.php:93
 msgid "Layout"
 msgstr "Formato"
 
-#: includes/class-admin.php:99
+#: includes/class-admin.php:94
 msgid "Thumbnail Size"
 msgstr "Tamaño de las miniaturas"
 
-#: includes/class-admin.php:100
+#: includes/class-admin.php:95
 msgid "Post Types"
 msgstr "Tipos de contenido"
 
-#: includes/class-admin.php:128
+#: includes/class-admin.php:121
 msgid "List"
 msgstr "Lista"
 
-#: includes/class-admin.php:129
+#: includes/class-admin.php:122
 msgid "Thumbnails"
 msgstr "Miniaturas"
 
-#: includes/class-admin.php:197 includes/class-admin.php:275
-#: rather-simple-related-content.php:111
+#: includes/class-admin.php:187 includes/class-admin.php:266
+#: rather-simple-related-content.php:102
 msgid "Related Content"
 msgstr "Contenido relacionado"
 
-#: includes/class-admin.php:226
+#: includes/class-admin.php:214
 msgid "Find related content"
 msgstr "Buscar contenido relacionado"
 
-#: includes/class-admin.php:227
+#: includes/class-admin.php:215
 msgid "Close"
 msgstr ""
 
-#: includes/class-admin.php:233 includes/class-admin.php:236
+#: includes/class-admin.php:221 includes/class-admin.php:224
 msgid "Search"
 msgstr ""
 
-#: includes/class-admin.php:258
+#: includes/class-admin.php:251
 msgid "Select"
 msgstr ""
 
-#: includes/class-admin.php:304
+#: includes/class-admin.php:289
+msgid "(Deleted)"
+msgstr "(Eliminado)"
+
+#: includes/class-admin.php:299
 msgid "Add related content"
 msgstr "Añadir contenido relacionado"
 
-#: includes/class-admin.php:305
+#: includes/class-admin.php:300
 msgid "Add posts IDs from posts you want to relate, comma separated."
 msgstr ""
 "Añade los IDs de las entradas que quieres conectar, separados por comas."
 
-#: includes/class-admin.php:306
+#: includes/class-admin.php:301
 msgid "Clear List"
 msgstr ""
 
-#: includes/class-admin.php:389
+#: includes/class-admin.php:380
 msgid "Title"
 msgstr ""
 
-#: includes/class-admin.php:389
+#: includes/class-admin.php:380
 msgid "Type"
 msgstr ""
 
-#: includes/class-admin.php:389
+#: includes/class-admin.php:380
 msgid "Date"
 msgstr ""
 
-#: includes/class-admin.php:389
+#: includes/class-admin.php:380
 msgid "Status"
 msgstr ""
 
-#: includes/class-admin.php:395
+#: includes/class-admin.php:386
 msgid "Published"
 msgstr ""
 
-#: includes/class-admin.php:398
+#: includes/class-admin.php:389
 msgid "Scheduled"
 msgstr ""
 
-#: includes/class-admin.php:401
+#: includes/class-admin.php:392
 msgid "Pending Review"
 msgstr ""
 
-#: includes/class-admin.php:404
+#: includes/class-admin.php:395
 msgid "Draft"
 msgstr ""
 
-#: includes/class-admin.php:411
+#: includes/class-admin.php:402
 msgid "Y/m/d"
 msgstr ""
 

@@ -148,7 +148,7 @@ var rsrcFindPosts;
             return false;            
         });
 
-        setInterval( function()    {
+        setInterval( function() {
             if ( $( '#find-posts-response input:checkbox' ).length > 0 ) {
                 var $forbidden_ids = $( '#rsrc_post_ids' ).val().split( ',' );
                 $( '#find-posts-response input[value="' + rsrc_js.ID + '"]' )
@@ -172,4 +172,4 @@ var rsrcFindPosts;
         
     });
     
-})(jQuery);            
+})( jQuery );            

@@ -1,11 +1,12 @@
 <?php
 /*
-Plugin Name: Rather Simple Related Content
-Plugin URI: http://wordpress.org/plugins/rather-simple-related-content/
-Version: v1.0
-Author: Oscar Ciutat
-Author URI: http://oscarciutat.com/code/
-Description: A really simple manual related posts plugin
+    Plugin Name: Rather Simple Related Content
+    Plugin URI: 
+    Update URI: false
+    Version: v1.0
+    Author: Oscar Ciutat
+    Author URI: http://oscarciutat.com/code/
+    Description: A really simple manual related posts plugin
 */
 
 class Rather_Simple_Related_Content {

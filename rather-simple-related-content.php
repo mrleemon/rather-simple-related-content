@@ -86,7 +86,12 @@ class Rather_Simple_Related_Content {
 	 * Enqueue scripts
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_style( 'rather-simple-related-content-css', plugins_url( '/style.css', __FILE__ ) );
+		wp_enqueue_style(
+			'rather-simple-related-content-css',
+			plugins_url( '/style.css', __FILE__ ),
+			array(),
+			filemtime( plugin_dir_path( __FILE__ ) . '/style.css' )
+		);
 	}
 
 	/**

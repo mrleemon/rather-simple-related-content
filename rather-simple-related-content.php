@@ -3,11 +3,13 @@
  * Plugin Name: Rather Simple Related Content
  * Plugin URI:
  * Update URI: false
- * Version: v1.0
+ * Version: 1.0
+ * Requires at least: 5.0
+ * Requires PHP: 7.0
  * Author: Oscar Ciutat
  * Author URI: http://oscarciutat.com/code/
- * Description: A really simple manual related content plugin
  * Text Domain: rather-simple-related-content
+ * Description: A really simple manual related content plugin
  * License: GPL v2 or later
  *
  * This program is free software; you can redistribute it and/or modify

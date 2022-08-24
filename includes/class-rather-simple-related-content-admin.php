@@ -73,14 +73,14 @@ final class Rather_Simple_Related_Content_Admin {
 			'rather-simple-related-content-css',
 			plugins_url( '/assets/css/admin.css', dirname( __FILE__ ) ),
 			array(),
-			filemtime( plugin_dir_path( __FILE__ ) . '/assets/css/admin.css' )
+			filemtime( plugin_dir_path( dirname( __FILE__ ) ) . '/assets/css/admin.css' )
 		);
 		if ( 'post-new.php' === $hook || 'post.php' === $hook ) {
 			wp_enqueue_script(
 				'rather-simple-related-content',
 				plugins_url( '/assets/js/backend.js', dirname( __FILE__ ) ),
 				array( 'jquery' ),
-				filemtime( plugin_dir_path( __FILE__ ) . '/assets/js/backend.js' ),
+				filemtime( plugin_dir_path( dirname( __FILE__ ) ) . '/assets/js/backend.js' ),
 				true
 			);
 			wp_localize_script( 'rather-simple-related-content', 'rsrc_js', array( 'ID' => $post->ID ) );

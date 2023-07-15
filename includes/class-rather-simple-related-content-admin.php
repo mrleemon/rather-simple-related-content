@@ -247,6 +247,7 @@ final class Rather_Simple_Related_Content_Admin {
 						$args       = array(
 							'show_ui'             => true,
 							'public'              => true,
+							'publicly_queryable'  => false,
 							'exclude_from_search' => false,
 						);
 						$post_types = get_post_types( $args, 'objects' );
@@ -372,8 +373,9 @@ final class Rather_Simple_Related_Content_Admin {
 		}
 		$post_types = get_post_types(
 			array(
-				'public'  => true,
-				'show_ui' => true,
+				'show_ui'            => true,
+				'public'             => true,
+				'publicly_queryable' => false,
 			)
 		);
 		$in_array   = array_intersect( $pt, $post_types );

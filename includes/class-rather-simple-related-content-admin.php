@@ -46,7 +46,6 @@ final class Rather_Simple_Related_Content_Admin {
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
 		add_action( 'save_post', array( $this, 'save_post' ) );
 		add_action( 'wp_ajax_rsrc_find_posts', array( $this, 'rsrc_find_posts' ) );
-
 	}
 
 	/**
@@ -71,16 +70,16 @@ final class Rather_Simple_Related_Content_Admin {
 		global $post;
 		wp_enqueue_style(
 			'rather-simple-related-content-css',
-			plugins_url( '/assets/css/admin.css', dirname( __FILE__ ) ),
+			plugins_url( '/assets/css/admin.css', __DIR__ ),
 			array(),
-			filemtime( plugin_dir_path( dirname( __FILE__ ) ) . '/assets/css/admin.css' )
+			filemtime( plugin_dir_path( __DIR__ ) . '/assets/css/admin.css' )
 		);
 		if ( 'post-new.php' === $hook || 'post.php' === $hook ) {
 			wp_enqueue_script(
 				'rather-simple-related-content',
-				plugins_url( '/assets/js/backend.js', dirname( __FILE__ ) ),
+				plugins_url( '/assets/js/backend.js', __DIR__ ),
 				array( 'jquery' ),
-				filemtime( plugin_dir_path( dirname( __FILE__ ) ) . '/assets/js/backend.js' ),
+				filemtime( plugin_dir_path( __DIR__ ) . '/assets/js/backend.js' ),
 				true
 			);
 			wp_localize_script( 'rather-simple-related-content', 'rsrc_js', array( 'ID' => $post->ID ) );
@@ -331,7 +330,7 @@ final class Rather_Simple_Related_Content_Admin {
 	 */
 	public function save_post( $post_id ) {
 		// Verify nonce.
-		if ( isset( $_POST['metabox_nonce'] ) && ! wp_verify_nonce( $_POST['metabox_nonce'], basename( __FILE__ ) ) ) {
+		if ( isset( $_POST['metabox_nonce'] ) && ! wp_verify_nonce( wp_unslash( $_POST['metabox_nonce'] ), basename( __FILE__ ) ) ) {
 			return $post_id;
 		}
 
@@ -352,10 +351,9 @@ final class Rather_Simple_Related_Content_Admin {
 		}
 
 		if ( isset( $_POST['rsrc_post_ids'] ) ) {
-			$ids = implode( ',', array_filter( wp_parse_id_list( $_POST['rsrc_post_ids'] ) ) );
+			$ids = implode( ',', array_filter( wp_parse_id_list( wp_unslash( $_POST['rsrc_post_ids'] ) ) ) );
 			update_post_meta( $post_id, '_rsrc_posts_ids', $ids );
 		}
-
 	}
 
 	/**
@@ -366,7 +364,7 @@ final class Rather_Simple_Related_Content_Admin {
 
 		check_ajax_referer( 'find-posts' );
 
-		$pt = explode( ',', trim( $_POST['post_type'], ',' ) );
+		$pt = explode( ',', trim( wp_unslash( $_POST['post_type'] ), ',' ) );
 		if ( empty( $_POST['ps'] ) ) {
 			$posttype = get_post_type_object( $pt[0] );
 			wp_die( $posttype->labels->not_found );
@@ -384,7 +382,7 @@ final class Rather_Simple_Related_Content_Admin {
 		} else {
 			$what = 'post';
 		}
-		$s = stripslashes( $_POST['ps'] );
+		$s = wp_unslash( $_POST['ps'] );
 		preg_match_all( '/".*?("|$)|((?<=[\\s",+])|^)[^\\s",+]+/', $s, $matches );
 		$search_terms = array_map( 'trim', $matches[0] );
 
@@ -396,7 +394,7 @@ final class Rather_Simple_Related_Content_Admin {
 			$searchand = ' AND ';
 		}
 		$term = esc_sql( $wpdb->esc_like( $s ) );
-		if ( count( $search_terms ) > 1 && $search_terms[0] != $s ) {
+		if ( count( $search_terms ) > 1 && $search_terms[0] !== $s ) {
 			$search .= " OR ($wpdb->posts.post_title LIKE '%{$term}%') OR ($wpdb->posts.post_content LIKE '%{$term}%')";
 		}
 
@@ -447,7 +445,6 @@ final class Rather_Simple_Related_Content_Admin {
 		);
 		$x->send();
 	}
-
 }
 
 Rather_Simple_Related_Content_Admin::get_instance();

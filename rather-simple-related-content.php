@@ -50,7 +50,6 @@ class Rather_Simple_Related_Content {
 		}
 
 		return self::$instance;
-
 	}
 
 	/**
@@ -135,7 +134,6 @@ class Rather_Simple_Related_Content {
 			$html .= '</ul></div>';
 			echo $html;
 		}
-
 	}
 
 	/**
@@ -170,7 +168,6 @@ class Rather_Simple_Related_Content {
 
 		return $html;
 	}
-
 }
 
 add_action( 'plugins_loaded', array( Rather_Simple_Related_Content::get_instance(), 'plugin_setup' ) );

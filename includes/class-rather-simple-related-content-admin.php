@@ -381,7 +381,6 @@ final class Rather_Simple_Related_Content_Admin {
 		} else {
 			$what = 'post';
 		}
-		error_log( $what, 1, 'oscarciutat@gmail.com' );
 		$s = wp_unslash( $_POST['ps'] );
 		preg_match_all( '/".*?("|$)|((?<=[\\s",+])|^)[^\\s",+]+/', $s, $matches );
 		$search_terms = array_map( 'trim', $matches[0] );

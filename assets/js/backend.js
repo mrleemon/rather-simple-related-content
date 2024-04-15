@@ -32,7 +32,7 @@ var rsrcFindPosts;
         },
 
         close: function() {
-            $( '#find-posts-response' ).html( '' );
+            $( '#find-posts-response' ).empty();
             $( '#find-posts' ).hide();
             $( '.ui-find-overlay' ).hide();
             // $( '#find-posts' ).draggable( 'destroy' ).hide();
@@ -64,7 +64,7 @@ var rsrcFindPosts;
             }).always( function() {
                 spinner.hide();
             }).done( function( x ) {
-                if ( ! x ) {
+                if ( ! x.success ) {
                     $( '#find-posts-response' ).text( x.responseText );
                 }
                 $( '#find-posts-response' ).html( x.data );

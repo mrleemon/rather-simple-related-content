@@ -100,7 +100,7 @@ var rsrcFindPosts;
         $( '#rsrc_delete_related_posts' ).on( 'click', function() {
             $( '.related-posts' ).animate( { opacity: 0 }, 500, function() { 
                                                                 $( this ).html( '' ) ;
-                                                                $( '#rsrc_post_ids' ) .val( '' );
+                                                                $( '#rsrc_post_ids' ).val( '' );
                                                                 $( this ).css( 'opacity', '1' ) ;
                                                             }
             );

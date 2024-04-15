@@ -246,7 +246,6 @@ final class Rather_Simple_Related_Content_Admin {
 						$args       = array(
 							'show_ui'             => true,
 							'public'              => true,
-							'publicly_queryable'  => false,
 							'exclude_from_search' => false,
 						);
 						$post_types = get_post_types( $args, 'objects' );
@@ -371,9 +370,9 @@ final class Rather_Simple_Related_Content_Admin {
 		}
 		$post_types = get_post_types(
 			array(
-				'show_ui'            => true,
-				'public'             => true,
-				'publicly_queryable' => false,
+				'show_ui'             => true,
+				'public'              => true,
+				'exclude_from_search' => false,
 			)
 		);
 		$in_array   = array_intersect( $pt, $post_types );
@@ -382,6 +381,7 @@ final class Rather_Simple_Related_Content_Admin {
 		} else {
 			$what = 'post';
 		}
+		error_log( $what, 1, 'oscarciutat@gmail.com' );
 		$s = wp_unslash( $_POST['ps'] );
 		preg_match_all( '/".*?("|$)|((?<=[\\s",+])|^)[^\\s",+]+/', $s, $matches );
 		$search_terms = array_map( 'trim', $matches[0] );

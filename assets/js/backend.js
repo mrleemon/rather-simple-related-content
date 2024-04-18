@@ -4,10 +4,10 @@ var rsrcFindPosts;
 
     rsrcFindPosts = {
         open: function( af_name, af_val ) {
-            var overlay = $( '.ui-find-overlay' );
+            var overlay = $( '.rsrc-ui-find-overlay' );
 
             if ( overlay.length === 0 ) {
-                $( 'body' ).append( '<div class="ui-find-overlay"></div>' );
+                $( 'body' ).append( '<div class="rsrc-ui-find-overlay"></div>' );
                 rsrcFindPosts.overlay();
             }
 
@@ -17,9 +17,9 @@ var rsrcFindPosts;
                 $( '#affected' ).attr( 'name', af_name ).val( af_val );
             }
 
-            $( '#find-posts' ).show();
+            $( '#rsrc-find-posts' ).show();
 
-            $( '#find-posts-input' ).trigger( 'focus' ).on( 'keyup', function( e ) {
+            $( '#rsrc-find-posts-input' ).trigger( 'focus' ).on( 'keyup', function( e ) {
                 if ( e.which == 27 ) {
                     rsrcFindPosts.close();
                 } // close on Escape
@@ -32,30 +32,30 @@ var rsrcFindPosts;
         },
 
         close: function() {
-            $( '#find-posts-response' ).empty();
-            $( '#find-posts' ).hide();
-            $( '.ui-find-overlay' ).hide();
-            // $( '#find-posts' ).draggable( 'destroy' ).hide();
+            $( '#rsrc-find-posts-response' ).empty();
+            $( '#rsrc-find-posts' ).hide();
+            $( '.rsrc-ui-find-overlay' ).hide();
+            // $( '#rsrc-find-posts' ).draggable( 'destroy' ).hide();
         },
 
         overlay: function() {
-            $( '.ui-find-overlay' ).on( 'click', function () {
+            $( '.rsrc-ui-find-overlay' ).on( 'click', function () {
                 rsrcFindPosts.close();
             });
         },
 
         send: function() {
             var $pt = '';
-            $( 'input[name="find-posts-what[]"]:checked' ).each( function() {
+            $( 'input[name="rsrc-find-posts-what[]"]:checked' ).each( function() {
                 $pt += $( this ).val() + ',';
             });
             var post = {
-                    ps: $( '#find-posts-input' ).val(),
+                    ps: $( '#rsrc-find-posts-input' ).val(),
                     action: 'rsrc_find_posts',
-                    _ajax_nonce: $( '#_ajax_nonce' ).val(),
+                    _ajax_nonce: $( '#_rsrc_ajax_nonce' ).val(),
                     post_type: $pt
                 },
-                spinner = $( '.find-box-search .spinner' );
+                spinner = $( '.rsrc-find-box-search .spinner' );
             spinner.show();
             $.ajax( ajaxurl, {
                 type: 'POST',
@@ -66,12 +66,11 @@ var rsrcFindPosts;
                 spinner.hide();
             }).done( function( x ) {
                 if ( ! x.success ) {
-                    $( '#find-posts-response' ).text( x.responseText );
+                    $( '#rsrc-find-posts-response' ).text( x.responseText );
                 }
-                $( '#find-posts-response' ).html( x.data.html );
-                console.log(x.data.html);
+                $( '#rsrc-find-posts-response' ).html( x.data.html );
             }).fail( function( x ) {
-                $( '#find-posts-response' ).text( x.responseText );
+                $( '#rsrc-find-posts-response' ).text( x.responseText );
             });
         }
     };
@@ -83,19 +82,19 @@ var rsrcFindPosts;
             rsrcFindPosts.open( 'from_post', rsrc_js.ID ); 
         }
 
-        $( '#find-posts-submit' ).on( 'click', function( e ) {
-            if ( '' == $( '#find-posts-response' ).html() ) {
+        $( '#rsrc-find-posts-submit' ).on( 'click', function( e ) {
+            if ( '' == $( '#rsrc-find-posts-response' ).html() ) {
                 e.preventDefault();
             }
         });
-        $( '#find-posts .find-box-search :input' ).on( 'keypress', function( e ) {
+        $( '#rsrc-find-posts .rsrc-find-box-search :input' ).on( 'keypress', function( e ) {
             if ( 13 == e.which ) {
                 rsrcFindPosts.send();
                 return false;
             }
         } );
-        $( '#find-posts-search' ).on( 'click', rsrcFindPosts.send );
-        $( '#find-posts-close' ).on( 'click', rsrcFindPosts.close );
+        $( '#rsrc-find-posts-search' ).on( 'click', rsrcFindPosts.send );
+        $( '#rsrc-find-posts-close' ).on( 'click', rsrcFindPosts.close );
             
         $( '#rsrc_open_find_posts_button' ).on( 'click', rsrc_open_find_posts_dialog );
         
@@ -108,7 +107,7 @@ var rsrcFindPosts;
             );
         } );
                 
-        $( 'body:first' ).prepend( $( '.find-box-search input#_ajax_nonce' ) );
+        $( 'body:first' ).prepend( $( '.rsrc-find-box-search input#_rsrc_ajax_nonce' ) );
         
         $( ".related-posts" ).sortable({
             'update': function( e, ui ) {
@@ -128,12 +127,12 @@ var rsrcFindPosts;
             'dropOnEmpty': false,
         });
         
-        $( '#find-posts-submit' ).on( 'click', function( e ) {
+        $( '#rsrc-find-posts-submit' ).on( 'click', function( e ) {
             e.preventDefault();
-            if ( $( 'input[name="found_post_id[]"]:checked' ).length == 0 ) {
+            if ( $( 'input[name="rsrc_found_post_id[]"]:checked' ).length == 0 ) {
                 return false;
             }
-            $( 'input[name="found_post_id[]"]:checked' ).each( function( id ) {
+            $( 'input[name="rsrc_found_post_id[]"]:checked' ).each( function( id ) {
                 var selectedID = $( this ).val();
                 var posts_ids = new Array();
                 posts_ids = $( '#rsrc_post_ids' ).val() != '' ? $( '#rsrc_post_ids' ).val().split( ',' ) : [];
@@ -151,11 +150,11 @@ var rsrcFindPosts;
         });
 
         setInterval( function() {
-            if ( $( '#find-posts-response input:checkbox' ).length > 0 ) {
+            if ( $( '#rsrc-find-posts-response input:checkbox' ).length > 0 ) {
                 var $forbidden_ids = $( '#rsrc_post_ids' ).val().split( ',' );
-                $( '#find-posts-response input[value="' + rsrc_js.ID + '"]' )
+                $( '#rsrc-find-posts-response input[value="' + rsrc_js.ID + '"]' )
                     .prop( 'disabled', true );
-                $( '#find-posts-response input' ).filter( function( i ) { 
+                $( '#rsrc-find-posts-response input' ).filter( function( i ) { 
                     return $.inArray( $( this ).val(), $forbidden_ids ) > -1;
                 } )
                 .prop( 'disabled', true ).prop( 'checked', true );

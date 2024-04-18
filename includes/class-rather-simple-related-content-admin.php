@@ -228,21 +228,21 @@ final class Rather_Simple_Related_Content_Admin {
 		if ( ! empty( $settings['post_types'] ) && in_array( $typenow, $settings['post_types'], true ) ) {
 
 			?>
-			<div id="find-posts" class="find-box" style="display:none;">
-				<div id="find-posts-head" class="find-box-head">
+			<div id="rsrc-find-posts" class="rsrc-find-box" style="display:none;">
+				<div id="rsrc-find-posts-head" class="rsrc-find-box-head">
 					<?php _e( 'Find related content', 'rather-simple-related-content' ); ?>
-					<button type="button" id="find-posts-close"><span class="screen-reader-text"><?php _e( 'Close' ); ?></span></button>
+					<button type="button" id="rsrc-find-posts-close"><span class="screen-reader-text"><?php _e( 'Close' ); ?></span></button>
 				</div>
-				<div class="find-box-inside">
-					<div class="find-box-search">
+				<div class="rsrc-find-box-inside">
+					<div class="rsrc-find-box-search">
 						<input type="hidden" name="affected" id="affected" value="" />
-						<?php wp_nonce_field( 'find-posts', '_ajax_nonce', false ); ?>
-						<label class="screen-reader-text" for="find-posts-input"><?php _e( 'Search' ); ?></label>
-						<input type="text" id="find-posts-input" name="ps" value="" />
+						<?php wp_nonce_field( 'rsrc-find-posts', '_rsrc_ajax_nonce', false ); ?>
+						<label class="screen-reader-text" for="rsrc-find-posts-input"><?php _e( 'Search' ); ?></label>
+						<input type="text" id="rsrc-find-posts-input" name="ps" value="" />
 						<span class="spinner"></span>
-						<input type="button" id="find-posts-search" value="<?php esc_attr_e( 'Search' ); ?>" class="button" />
+						<input type="button" id="rsrc-find-posts-search" value="<?php esc_attr_e( 'Search' ); ?>" class="button" />
 						<div class="clear"></div>
-						<div class="find-box-options">
+						<div class="rsrc-find-box-options">
 						<?php
 						$args       = array(
 							'show_ui'             => true,
@@ -255,8 +255,8 @@ final class Rather_Simple_Related_Content_Admin {
 								continue;
 							}
 							?>
-							<label for="find-posts-<?php echo esc_attr( $post_type->name ); ?>">
-								<input type="checkbox" name="find-posts-what[]" id="find-posts-<?php echo esc_attr( $post_type->name ); ?>" value="<?php echo esc_attr( $post_type->name ); ?>" checked="checked" />
+							<label for="rsrc-find-posts-<?php echo esc_attr( $post_type->name ); ?>">
+								<input type="checkbox" name="rsrc-find-posts-what[]" id="rsrc-find-posts-<?php echo esc_attr( $post_type->name ); ?>" value="<?php echo esc_attr( $post_type->name ); ?>" checked="checked" />
 								<?php echo $post_type->label; ?>
 							</label>
 							<?php
@@ -264,10 +264,10 @@ final class Rather_Simple_Related_Content_Admin {
 						?>
 						</div>
 					</div>
-					<div id="find-posts-response"></div>
+					<div id="rsrc-find-posts-response"></div>
 				</div>
-				<div class="find-box-buttons">
-					<?php submit_button( __( 'Select' ), 'primary alignright', 'find-posts-submit', false ); ?>
+				<div class="rsrc-find-box-buttons">
+					<?php submit_button( __( 'Select' ), 'primary alignright', 'rsrc-find-posts-submit', false ); ?>
 					<div class="clear"></div>
 				</div>
 			</div>
@@ -362,7 +362,7 @@ final class Rather_Simple_Related_Content_Admin {
 	public function rsrc_find_posts() {
 		global $wpdb;
 
-		check_ajax_referer( 'find-posts' );
+		check_ajax_referer( 'rsrc-find-posts' );
 
 		$pt = explode( ',', trim( wp_unslash( $_POST['post_type'] ), ',' ) );
 		if ( empty( $_POST['ps'] ) ) {
@@ -406,7 +406,7 @@ final class Rather_Simple_Related_Content_Admin {
 			wp_die( $posttype->labels->not_found );
 		}
 
-		$html = '<table class="widefat"><thead><tr><th class="found-checkbox"></th><th>' . __( 'Title' ) . '</th><th>' . __( 'Type' ) . '</th><th>' . __( 'Date' ) . '</th><th>' . __( 'Status' ) . '</th></tr></thead><tbody>';
+		$html = '<table class="widefat"><thead><tr><th class="rsrc-found-checkbox"></th><th>' . __( 'Title' ) . '</th><th>' . __( 'Type' ) . '</th><th>' . __( 'Date' ) . '</th><th>' . __( 'Status' ) . '</th></tr></thead><tbody>';
 		foreach ( $posts as $post ) {
 
 			switch ( $post->post_status ) {
@@ -432,8 +432,8 @@ final class Rather_Simple_Related_Content_Admin {
 			}
 			$posttype = get_post_type_object( $post->post_type );
 			$posttype = $posttype->labels->singular_name;
-			$html    .= '<tr class="found-posts"><td class="found-checkbox"><input type="checkbox" id="found-' . $post->ID . '" name="found_post_id[]" value="' . esc_attr( $post->ID ) . '"></td>';
-			$html    .= '<td><label for="found-' . $post->ID . '">' . esc_html( $post->post_title ) . '</label></td><td>' . esc_html( $posttype ) . '</td><td>' . esc_html( $time ) . '</td><td>' . esc_html( $stat ) . '</td></tr>';
+			$html    .= '<tr class="rsrc-found-posts"><td class="rsrc-found-checkbox"><input type="checkbox" id="rsrc-found-' . $post->ID . '" name="rsrc_found_post_id[]" value="' . esc_attr( $post->ID ) . '"></td>';
+			$html    .= '<td><label for="rsrc-found-' . $post->ID . '">' . esc_html( $post->post_title ) . '</label></td><td>' . esc_html( $posttype ) . '</td><td>' . esc_html( $time ) . '</td><td>' . esc_html( $stat ) . '</td></tr>';
 		}
 		$html .= '</tbody></table>';
 		wp_send_json_success(

@@ -1,165 +1,165 @@
 .related-posts li {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .clear-link {
-    line-height: 28px;
-    vertical-align: middle;
-    text-align: left;
-    margin-left: 8px;
+	line-height: 28px;
+	vertical-align: middle;
+	text-align: left;
+	margin-left: 8px;
 }
 
 .rsrc-find-box {
-    background-color: #fff;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
-    width: 600px;
-    overflow: hidden;
-    margin-left: -300px;
-    position: fixed;
-    top: 30px;
-    bottom: 30px;
-    left: 50%;
-    z-index: 100105;
+	background-color: #fff;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+	width: 600px;
+	overflow: hidden;
+	margin-left: -300px;
+	position: fixed;
+	top: 30px;
+	bottom: 30px;
+	left: 50%;
+	z-index: 100105;
 }
 
 .rsrc-find-box-head {
-    background: #fff;
-    border-bottom: 1px solid #dcdcde;
-    height: 36px;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 2;
-    padding: 0 36px 0 16px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+	background: #fff;
+	border-bottom: 1px solid #dcdcde;
+	height: 36px;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 2;
+	padding: 0 36px 0 16px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
 }
 
 .rsrc-find-box-inside {
-    overflow: auto;
-    padding: 16px;
-    background-color: #fff;
-    position: absolute;
-    top: 37px;
-    bottom: 45px;
-    overflow-y: scroll;
-    width: 100%;
-    box-sizing: border-box;
+	overflow: auto;
+	padding: 16px;
+	background-color: #fff;
+	position: absolute;
+	top: 37px;
+	bottom: 45px;
+	overflow-y: scroll;
+	width: 100%;
+	box-sizing: border-box;
 }
 
 .rsrc-find-box-search {
-    padding-bottom: 16px;
+	padding-bottom: 16px;
 }
 
 .rsrc-find-box-search .spinner {
-    float: none;
-    left: 105px;
-    position: absolute;
+	float: none;
+	left: 105px;
+	position: absolute;
 }
 
 .rsrc-find-box-search,
 #rsrc-find-posts-response {
-    position: relative;
-    /* RTL fix, #WP28010 */
+	position: relative;
+	/* RTL fix, #WP28010 */
 }
 
 #rsrc-find-posts-input,
 #rsrc-find-posts-search {
-    float: left;
+	float: left;
 }
 
 #rsrc-find-posts-input {
-    width: 140px;
-    height: 28px;
-    margin: 0 4px 0 0;
+	width: 140px;
+	height: 28px;
+	margin: 0 4px 0 0;
 }
 
 .widefat .rsrc-found-checkbox {
-    padding-right: 0;
-    width: 16px;
+	padding-right: 0;
+	width: 16px;
 }
 
 #rsrc-find-posts-close {
-    width: 36px;
-    height: 36px;
-    border: none;
-    padding: 0;
-    position: absolute;
-    top: 0;
-    right: 0;
-    cursor: pointer;
-    text-align: center;
-    background: none;
-    color: #646970;
+	width: 36px;
+	height: 36px;
+	border: none;
+	padding: 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	cursor: pointer;
+	text-align: center;
+	background: none;
+	color: #646970;
 }
 
 #rsrc-find-posts-close:hover,
 #rsrc-find-posts-close:focus {
-    color: #135e96;
+	color: #135e96;
 }
 
 #rsrc-find-posts-close:focus {
-    box-shadow: 0 0 0 2px #2271b1;
-    /* Only visible in Windows High Contrast mode */
-    outline: 2px solid transparent;
-    outline-offset: -2px;
+	box-shadow: 0 0 0 2px #2271b1;
+	/* Only visible in Windows High Contrast mode */
+	outline: 2px solid transparent;
+	outline-offset: -2px;
 }
 
 #rsrc-find-posts-close:before {
-    font: normal 20px/36px dashicons;
-    vertical-align: top;
-    speak: never;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    content: "\f158";
+	font: normal 20px/36px dashicons;
+	vertical-align: top;
+	speak: never;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	content: "\f158";
 }
 
 .rsrc-find-box-buttons {
-    padding: 8px 16px;
-    background: #fff;
-    border-top: 1px solid #dcdcde;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+	padding: 8px 16px;
+	background: #fff;
+	border-top: 1px solid #dcdcde;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
 }
 
 .rsrc-ui-find-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: #000;
-    opacity: 0.7;
-    filter: alpha(opacity=70);
-    z-index: 100100;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #000;
+	opacity: 0.7;
+	filter: alpha(opacity=70);
+	z-index: 100100;
 }
 
 .rsrc-find-box-search .rsrc-find-box-options {
-    margin-top: 10px;
+	margin-top: 10px;
 }
 
 .rsrc-find-box-search .rsrc-find-box-options label:not(:first-child) {
-    margin-left: 10px;
+	margin-left: 10px;
 }
 
 @media screen and (max-width: 782px) {
-    .rsrc-find-box-inside {
-        bottom: 57px;
-    }
+	.rsrc-find-box-inside {
+		bottom: 57px;
+	}
 }
 
 @media screen and (max-width: 660px) {
 
-    .rsrc-find-box {
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin: 0;
-        width: 100%;
-    }
+	.rsrc-find-box {
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: 0;
+		width: 100%;
+	}
 
 }

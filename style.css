@@ -1,25 +1,25 @@
 .related-content {
-    width: 100%;
-    margin: 20px 0;
-    padding-top: 30px;
+	width: 100%;
+	margin: 20px 0;
+	padding-top: 30px;
 }
-    
+
 .related-content h3 {
-    margin-bottom: 20px;
-    font-size: 2.0rem;
-    line-height: 1.8;
+	margin-bottom: 20px;
+	font-size: 2.0rem;
+	line-height: 1.8;
 }
 
 .related-content ul {
-    margin: 0;
-    list-style: none;
+	margin: 0;
+	list-style: none;
 }
 
 .related-content ul.layout-thumbnails {
-    display: flex;
-    flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .related-content ul.layout-thumbnails li {
-    margin: 0 2px 2px 0;
+	margin: 0 2px 2px 0;
 }

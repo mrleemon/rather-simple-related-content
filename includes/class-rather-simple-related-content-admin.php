@@ -171,8 +171,9 @@ final class Rather_Simple_Related_Content_Admin {
 		$post_types         = ! empty( $settings['post_types'] ) ? $settings['post_types'] : array();
 		$post_types_options = get_post_types(
 			array(
-				'public'  => true,
-				'show_ui' => true,
+				'show_ui'             => true,
+				'public'              => true,
+				'exclude_from_search' => false,
 			),
 			'objects'
 		);

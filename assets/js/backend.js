@@ -59,6 +59,7 @@ var rsrcFindPosts;
             spinner.show();
             $.ajax( ajaxurl, {
                 type: 'POST',
+                cache: false,
                 data: post,
                 dataType: 'json'
             }).always( function() {

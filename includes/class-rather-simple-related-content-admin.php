@@ -428,7 +428,6 @@ final class Rather_Simple_Related_Content_Admin {
 			if ( '0000-00-00 00:00:00' === $post->post_date ) {
 				$time = '';
 			} else {
-				// $time = mysql2date( __( 'Y/m/d' ), $post->post_date );
 				$time = wp_date( __( 'Y/m/d' ), strtotime( $post->post_date ) );
 			}
 			$posttype = get_post_type_object( $post->post_type );

@@ -406,7 +406,7 @@ final class Rather_Simple_Related_Content_Admin {
 			wp_die( $posttype->labels->not_found );
 		}
 
-		$html = '<table class="widefat" cellspacing="0"><thead><tr><th class="found-radio"><br /></th><th>' . __( 'Title' ) . '</th><th>' . __( 'Type' ) . '</th><th>' . __( 'Date' ) . '</th><th>' . __( 'Status' ) . '</th></tr></thead><tbody>';
+		$html = '<table class="widefat"><thead><tr><th class="found-checkbox"></th><th>' . __( 'Title' ) . '</th><th>' . __( 'Type' ) . '</th><th>' . __( 'Date' ) . '</th><th>' . __( 'Status' ) . '</th></tr></thead><tbody>';
 		foreach ( $posts as $post ) {
 
 			switch ( $post->post_status ) {
@@ -432,7 +432,7 @@ final class Rather_Simple_Related_Content_Admin {
 			}
 			$posttype = get_post_type_object( $post->post_type );
 			$posttype = $posttype->labels->singular_name;
-			$html    .= '<tr class="found-posts"><td class="found-radio"><input type="checkbox" id="found-' . $post->ID . '" name="found_post_id[]" value="' . esc_attr( $post->ID ) . '"></td>';
+			$html    .= '<tr class="found-posts"><td class="found-checkbox"><input type="checkbox" id="found-' . $post->ID . '" name="found_post_id[]" value="' . esc_attr( $post->ID ) . '"></td>';
 			$html    .= '<td><label for="found-' . $post->ID . '">' . esc_html( $post->post_title ) . '</label></td><td>' . esc_html( $posttype ) . '</td><td>' . esc_html( $time ) . '</td><td>' . esc_html( $stat ) . '</td></tr>';
 		}
 		$html .= '</tbody></table>';

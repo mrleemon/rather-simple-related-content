@@ -436,7 +436,11 @@ final class Rather_Simple_Related_Content_Admin {
 			$html    .= '<td><label for="found-' . $post->ID . '">' . esc_html( $post->post_title ) . '</label></td><td>' . esc_html( $posttype ) . '</td><td>' . esc_html( $time ) . '</td><td>' . esc_html( $stat ) . '</td></tr>';
 		}
 		$html .= '</tbody></table>';
-		wp_send_json_success( $html );
+		wp_send_json_success(
+			array(
+				'html' => $html,
+			)
+		);
 		/*
 		$x = new WP_Ajax_Response();
 		$x->add(

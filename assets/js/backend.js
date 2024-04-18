@@ -68,7 +68,8 @@ var rsrcFindPosts;
                 if ( ! x.success ) {
                     $( '#find-posts-response' ).text( x.responseText );
                 }
-                $( '#find-posts-response' ).html( x.data );
+                $( '#find-posts-response' ).html( x.data.html );
+                console.log(x.data.html);
             }).fail( function( x ) {
                 $( '#find-posts-response' ).text( x.responseText );
             });

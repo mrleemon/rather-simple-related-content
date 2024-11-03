@@ -80,7 +80,10 @@ final class Rather_Simple_Related_Content_Admin {
 				plugins_url( '/assets/js/backend.js', __DIR__ ),
 				array( 'jquery' ),
 				filemtime( plugin_dir_path( __DIR__ ) . '/assets/js/backend.js' ),
-				true
+				array(
+					'in_footer' => true,
+					'strategy'  => 'defer',
+				)
 			);
 			wp_localize_script( 'rather-simple-related-content', 'rsrc_js', array( 'ID' => $post->ID ) );
 		}

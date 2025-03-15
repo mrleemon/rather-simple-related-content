@@ -9,6 +9,7 @@
  * Author: Oscar Ciutat
  * Author URI: http://oscarciutat.com/code/
  * Text Domain: rather-simple-related-content
+ * Domain Path: /languages
  * Description: A really simple manual related content plugin
  * License: GPL v2 or later
  *

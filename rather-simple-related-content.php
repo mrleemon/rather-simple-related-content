@@ -4,7 +4,7 @@
  * Plugin URI:
  * Update URI: false
  * Version: 1.0
- * Requires at least: 5.0
+ * Requires at least: 6.8
  * Requires PHP: 7.4
  * Author: Oscar Ciutat
  * Author URI: http://oscarciutat.com/code/
@@ -60,7 +60,6 @@ class Rather_Simple_Related_Content {
 
 		$this->includes();
 
-		add_action( 'init', array( $this, 'load_language' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( 'get_related_content', array( $this, 'get_related_content' ) );
 	}
@@ -75,13 +74,6 @@ class Rather_Simple_Related_Content {
 	 */
 	protected function includes() {
 		include_once 'includes/class-rather-simple-related-content-admin.php';
-	}
-
-	/**
-	 * Loads language
-	 */
-	public function load_language() {
-		load_plugin_textdomain( 'rather-simple-related-content', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 	}
 
 	/**
